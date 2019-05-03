@@ -1,9 +1,9 @@
 import {
     ClassicModel
-} from '../../models/classic.js'
+} from '../../models_cloud/classic.js'
 import {
     LikeModel
-} from '../../models/like.js'
+} from '../../models_cloud/like.js'
 
 let classicModel = new ClassicModel()
 let likeModel = new LikeModel()
@@ -36,9 +36,9 @@ Component({
                 this.setData({
                     classic: res.data,
                     likeCount: res.data.fav_nums,
-                    likeStatus: res.data.like_status
-                })
-            })
+                    likeStatus: res.like_stauts.result.staut.data.length
+                }) 
+             })
         } else {
             classicModel.getById(cid, type, res => {
                 this._getLikeStatus(res.data.id, res.data.type)
@@ -82,8 +82,8 @@ Component({
         _getLikeStatus: function(artId, category) {
             likeModel.getClassicLikeStatus(artId, category, res => {
                 this.setData({
-                    likeCount: res.data.fav_nums,
-                    likeStatus: res.data.like_status
+                    likeCount: res.fav_num.data[0].fav_nums,
+                    likeStatus: res.staut.data.length
                 })
             })
         }

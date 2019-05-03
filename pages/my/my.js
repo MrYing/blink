@@ -1,6 +1,6 @@
 import {
     ClassicModel
-  } from '../../models/classic.js'
+  } from '../../models_cloud/classic.js'
   import {
     BookModel
   } from '../../models/book.js'
