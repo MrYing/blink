@@ -66,19 +66,40 @@ class ClassicModel {
 
 
     getMyFavor(success) {
-        const params = {
-            url: 'classic/favor',
-            success: success
-        }
-        this.request(params)
+        wx.cloud.callFunction({
+            name: 'classic_favor',
+            data: {
+
+            }
+        }).then(res => {
+            var res = res.result.res;
+            success(res);
+        })
+
+        // const params = {
+        //     url: 'classic/favor',
+        //     success: success
+        // }
+        // this.request(params)
     }
 
     getById(cid, type, success) {
-        let params = {
-            url: `classic/${type}/${cid}`,
-            success: success
-        }
-        this.request(params)
+        wx.cloud.callFunction({
+            name: 'classic_detail',
+            data: {
+                type: type,
+                id: cid
+            }
+        }).then(res => {
+            var res = res.result.res.data;
+            success(res);
+        })
+
+        // let params = {
+        //     url: `classic/${type}/${cid}`,
+        //     success: success
+        // }
+        // this.request(params)
     }
 
     _setLatestIndex(index) {

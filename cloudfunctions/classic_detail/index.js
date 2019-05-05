@@ -18,24 +18,27 @@ exports.main = async (event, context) => {
         })
         .limit(1)
         .get()
-        .then(async res => {
-            var res = res.data[0];
-            console.log("type" + res.type + ";" + "id" + res.id)
-            var like_stauts = await cloud.callFunction({
-                name: "classic_type_id_favor",
-                data: {
-                    type: res.type,
-                    id: res.id
-                }
-            })
+        .then(res => {
+            // var res = res.data[0];
+            // console.log("type" + res.type + ";" + "id" + res.id)
+            // var like_stauts = cloud.callFunction({
+            //     name: "classic_type_id_favor",
+            //     data: {
+            //         type: res.type,
+            //         id: res.id
+            //     }
+            // }).then( res => {
+            //     console.log("like_st:", res)
+            // })
 
             var classic = {};
             classic.data = res;
-            classic.like_stauts = like_stauts;
+            // classic.like_stauts = like_stauts;
             return classic;
         })
 
     return {
+        res,
         event,
         openid: wxContext.OPENID,
         appid: wxContext.APPID,

@@ -41,11 +41,11 @@ Component({
              })
         } else {
             classicModel.getById(cid, type, res => {
-                this._getLikeStatus(res.data.id, res.data.type)
+                this._getLikeStatus(res.data[0].id, res.data[0].type)
                 this.setData({
-                    classic: res.data,
-                    latest: classicModel.isLatest(res.data.index),
-                    first: classicModel.isFirst(res.data.index)
+                    classic: res.data[0],
+                    latest: classicModel.isLatest(res.data[0].index),
+                    first: classicModel.isFirst(res.data[0].index)
                 })
             })
         }
